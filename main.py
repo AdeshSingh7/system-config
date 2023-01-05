@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from cv2 import line
 import config, os
 
 if __name__=='__main__':
@@ -15,22 +14,31 @@ if __name__=='__main__':
             print(f"\33[91;1m-------------------------------------------------------------------------------------\33[0m")
             choice = input(f"\33[93;1mEnter your choice >>> \33[0m")
             if choice == 'a':
-                config.Update()
+                print(f'Updating installation')
+                config.Update(config.tools, config.module)
             elif choice == 'b':
-                config.Ngrok()
+                print(f'Installing Ngrok')
+                config.Ngrok(config.ngrok, config.ngrok_key)
             elif choice == 'c':
+                print(f'Installing Wine')
                 config.Wine()
             elif choice == 'd':
-                config.Anydesk()
+                print(f'Installing Anydesk')
+                config.Anydesk(config.anydesk)
             elif choice == 'e':
+                print(f'Installing Whatsapp')
                 config.Whatsapp()
             elif choice == 'f':
-                config.VisualStudio()
+                print(f'Installing Visual Studio')
+                config.VisualStudio(config.visualstudio)
             elif choice == 'g':
+                print(f'Installing Slack')
                 config.Slack()
             elif choice == 'h':
+                print(f'Installing Tag Sync')
                 config.Tag_Sync()
             elif choice == 'i':
+                print(f'Cleaning')
                 config.Clean()
             elif choice == 'q':
                 print("\33[91;1mThank you for using this program. Goodbye!\33[0m")
