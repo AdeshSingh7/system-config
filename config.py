@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from distutils.command.config import config
 import os, json
 
 main_menu_items = [
@@ -14,14 +15,21 @@ main_menu_items = [
     "[q] Quit:- This option will exit the program.",
 ]
 
-with open('config.json', 'r') as config_file:
-    config_data = json.load(config_file)
-    tools = config_data['tools']
-    module = config_data['module']
-    ngrok = config_data['ngrok']
-    ngrok_key = config_data['ngrok_key']
-    anydesk = config_data['anydesk']
-    visualstudio = config_data['visualstudio']
+config_data = {
+    "tools": "nano vim git wget figlet toilet curl zip apache2 net-tools php nmap ruby libminizip1 libgtkglext1 python python3 python3-pip python3-tk python3-dev",
+    "module": "ansible DateTime Flask Pillow PyAutoGUI pyfiglet requests tbomb termcolor urllib3 colorama",
+    "ngrok": "https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip",
+    "ngrok_key": "< Auth token >",
+    "anydesk": "https://download.anydesk.com/linux/anydesk_6.1.1-1_amd64.deb",
+    "visualstudio": "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64",
+    }
+
+tools = config_data['tools']
+module = config_data['module']
+ngrok = config_data['ngrok']
+ngrok_key = config_data['ngrok_key']
+anydesk = config_data['anydesk']
+visualstudio = config_data['visualstudio']
 
 def Clean():
     os.system(f'sudo apt -y autoremove && sudo apt -y autoclean')
