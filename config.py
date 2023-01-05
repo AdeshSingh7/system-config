@@ -21,16 +21,16 @@ main_menu_items = [
     "[q] Quit:- This option will exit the program.",
 ]
 
+def Clean():
+    os.system('sudo apt -y autoremove')
+    os.system('sudo apt -y autoclean')
+
 def Update():
     os.system('sudo apt -y update')
     os.system('sudo apt -y install '+tools)
     os.system('sudo apt -y --fix-broken install')
     os.system('sudo gem install lolcat')
     os.system('pip install '+module)
-
-def Clean():
-    os.system('sudo apt -y autoremove')
-    os.system('sudo apt -y autoclean')
 
 def Ngrok():
     os.system('wget '+ngrok)
