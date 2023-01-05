@@ -44,7 +44,6 @@ if __name__=='__main__':
                 print("\33[1;91m\u2712 Thank you for using this program. Goodbye!\33[0m")
                 exit()
             else:print("\33[1;91m\u2712 Invalid choice. Please try again.\33[0m")
-    except KeyboardInterrupt:
-        status = False
+    except KeyboardInterrupt:pass
     except Exception as Error:print(f'Error: {Error}')
     finally:exit()
