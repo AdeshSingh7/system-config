@@ -9,8 +9,7 @@ if __name__=='__main__':
             print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
             print(f"\33[1;94m| >>> Welcome to the installation program! Please choose an option from the following menu <<< |\33[0m")
             print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
-            for item in config.main_menu_items:
-                print(f'\33[92m{item}\33[0m')
+            for item in config.main_menu_items:print(f'\33[92m{item}\33[0m')
             print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
             choice = input(f"\33[1;93mEnter your choice >>> \33[0m")
             if choice == 'a':
@@ -41,6 +40,7 @@ if __name__=='__main__':
                 print(f"\33[1;91m\u2712 Remove any unused or broken packages and clear the system's cache.\33[0m")
                 config.Clean()
             elif choice == 'q':
+                os.system('clear')
                 print("\33[1;91m\u2712 Thank you for using this program. Goodbye!\33[0m")
                 exit()
             else:print("\33[1;91m\u2712 Invalid choice. Please try again.\33[0m")
