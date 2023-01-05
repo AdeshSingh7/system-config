@@ -1,50 +1,71 @@
 #!/usr/bin/python3
-import config, os
+import os, json
 
-if __name__=='__main__':
-    try:
-        status = True
-        while status:
-            os.system('clear')
-            print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
-            print(f"\33[1;94m| >>> Welcome to the installation program! Please choose an option from the following menu <<< |\33[0m")
-            print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
-            for item in config.main_menu_items:
-                print(f'\33[92m{item}\33[0m')
-            print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
-            choice = input(f"\33[1;93mEnter your choice >>> \33[0m")
-            if choice == 'a':
-                print(f"\33[1;91m\u2712 Update the system and install a list of commonly used tools and libraries.\33[0m")
-                config.Update(config.tools, config.module)
-            elif choice == 'b':
-                print(f"\33[1;91m\u2712 Download and install Ngrok, a tool for creating secure tunnels to localhost.\33[0m")
-                config.Ngrok(config.ngrok, config.ngrok_key)
-            elif choice == 'c':
-                print(f"\33[91m\u2712 Download and install Wine 7.0, a compatibility layer that allows users to run Windows applications on Linux.\33[0m")
-                config.Wine()
-            elif choice == 'd':
-                print(f"\33[1;91m\u2712 Download and install Anydesk, a remote desktop application.\33[0m")
-                config.Anydesk(config.anydesk)
-            elif choice == 'e':
-                print(f"\33[1;91m\u2712 Download and install Whatsapp for Linux using the Snap package manager.\33[0m")
-                config.Whatsapp()
-            elif choice == 'f':
-                print(f"\33[1;91m\u2712 Download and install Visual Studio Code, a popular code editor.\33[0m")
-                config.VisualStudio(config.visualstudio)
-            elif choice == 'g':
-                print(f"\33[1;91m\u2712 Download and install Slack, a communication and collaboration platform, using the Snap package manager.\33[0m")
-                config.Slack()
-            elif choice == 'h':
-                print(f"\33[1;91m\u2712 Clone the Tag Sync repository from GitHub and install it.\33[0m")
-                config.Tag_Sync()
-            elif choice == 'i':
-                print(f"\33[1;91m\u2712 Remove any unused or broken packages and clear the system's cache.\33[0m")
-                config.Clean()
-            elif choice == 'q':
-                print("\33[1;91m\u2712 Thank you for using this program. Goodbye!\33[0m")
-                exit()
-            else:print("\33[1;91m\u2712 Invalid choice. Please try again.\33[0m")
-    except KeyboardInterrupt:
-        status = False
-    except Exception as Error:print(f'Error: {Error}')
-    finally:exit()
+main_menu_items = [
+    "[a] Update & Install tools:- This option will update the system and install a list of commonly used tools and libraries.",
+    "[b] Download and Configure Ngrok:- This option will download and install Ngrok, a tool for creating secure tunnels to localhost.",
+    "[c] Install Wine 7.0:- This option will install Wine 7.0, a compatibility layer that allows users to run Windows applications on Linux.",
+    "[d] Install Anydesk:- This option will download and install Anydesk, a remote desktop application.",
+    "[e] Install Whatsapp:- This option will install Whatsapp for Linux using the Snap package manager.",
+    "[f] Install Visual Studio Code:- This option will download and install Visual Studio Code, a popular code editor.",
+    "[g] Install Slack:- This option will install Slack, a communication and collaboration platform, using the Snap package manager.",
+    "[h] Install Tag Sync:- This option will clone the Tag Sync repository from GitHub and install it.",
+    "[i] Clean and Clear:- This option will remove any unused or broken packages and clear the system's cache.",
+    "[q] Quit:- This option will exit the program.",
+]
+
+with open('config.json', 'r') as config_file:
+    config_data = json.load(config_file)
+    tools = config_data['tools']
+    module = config_data['module']
+    ngrok = config_data['ngrok']
+    ngrok_key = config_data['ngrok_key']
+    anydesk = config_data['anydesk']
+    visualstudio = config_data['visualstudio']
+
+def Clean():
+    os.system(f'sudo apt -y autoremove && sudo apt -y autoclean')
+
+def Update(tools, module):
+    os.system(f'sudo apt -y update')
+    os.system(f'sudo apt -y install {tools}')
+    os.system(f'sudo apt -y --fix-broken install')
+    os.system(f'sudo gem install lolcat')
+    os.system(f'pip install {module}')
+
+def Ngrok(ngrok, ngrok_key):
+    os.system(f'wget {ngrok}')
+    os.system(f'unzip ngrok*.zip')
+    os.system(f'rm -fr ngrok*.zip')
+    os.system(f'sudo mv ngrok /usr/bin/')
+    os.system(f'ngrok {ngrok_key}')
+    os.system(f'sudo ngrok {ngrok_key}')
+
+def Wine():
+    os.system(f'sudo dpkg --add-architecture i386')
+    os.system(f'wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -')
+    os.system(f"sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'")
+    os.system(f'sudo apt -y update')
+    os.system(f'sudo apt install --install-recommends winehq-stable')
+    os.system(f'wine --version')
+
+def Anydesk(anydesk):
+    os.system(f'wget {anydesk}')
+    os.system(f'sudo dpkg -i *.deb')
+    os.system(f'sudo rm -frv *.deb')
+
+def Whatsapp():
+    os.system(f'sudo apt -y install snapd')
+    os.system(f'sudo snap install whatsapp-for-linux')
+
+def VisualStudio(visualstudio):
+    os.system(f'wget {visualstudio}')
+    os.system(f'sudo dpkg -i *.deb')
+    os.system(f'sudo rm -frv *.deb')
+
+def Slack():
+    os.system(f'sudo apt -y install snapd')
+    os.system(f'sudo snap install slack')
+
+def Tag_Sync():
+    os.system(f'git clone https://github.com/AdeshSingh7/tag-sync.git')
