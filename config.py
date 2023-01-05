@@ -14,16 +14,14 @@ main_menu_items = [
     "[q] Quit:- This option will exit the program.",
 ]
 
-# open the config.json file in write mode
 with open('config.json', 'r') as config_file:
-  # write the data to the file as JSON
-  config_data = json.load(config_file)
-  tools = config_data['tools']
-  module = config_data['module']
-  ngrok = config_data['ngrok']
-  ngrok_key = config_data['ngrok_key']
-  anydesk = config_data['anydesk']
-  visualstudio = config_data['visualstudio']
+    config_data = json.load(config_file)
+    tools = config_data['tools']
+    module = config_data['module']
+    ngrok = config_data['ngrok']
+    ngrok_key = config_data['ngrok_key']
+    anydesk = config_data['anydesk']
+    visualstudio = config_data['visualstudio']
 
 def Clean():
     os.system(f'sudo apt -y autoremove && sudo apt -y autoclean')
