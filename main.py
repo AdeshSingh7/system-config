@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import config, os
+import config, os, time
 
 if __name__=='__main__':
     try:
@@ -44,6 +44,7 @@ if __name__=='__main__':
                 print("\33[1;91m\u2712 Thank you for using this program. Goodbye!\33[0m")
                 exit()
             else:print("\33[1;91m\u2712 Invalid choice. Please try again.\33[0m")
+            time.sleep(1)
     except KeyboardInterrupt:pass
     except Exception as Error:print(f'Error: {Error}')
     finally:exit()
