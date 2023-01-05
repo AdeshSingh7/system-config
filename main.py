@@ -6,12 +6,12 @@ if __name__=='__main__':
         status = True
         while status:
             os.system('clear')
-            print(f"\33[1;92m+----------------------------------------------------------------------------------------------+\33[0m")
-            print(f"\33[1;92m| >>> Welcome to the installation program! Please choose an option from the following menu <<< |\33[0m")
-            print(f"\33[1;92m+----------------------------------------------------------------------------------------------+\33[0m")
+            print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
+            print(f"\33[1;94m| >>> Welcome to the installation program! Please choose an option from the following menu <<< |\33[0m")
+            print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
             for item in config.main_menu_items:
                 print(f'\33[92m{item}\33[0m')
-            print(f"\33[1;92m+----------------------------------------------------------------------------------------------+\33[0m")
+            print(f"\33[1;94m+----------------------------------------------------------------------------------------------+\33[0m")
             choice = input(f"\33[1;93mEnter your choice >>> \33[0m")
             if choice == 'a':
                 print(f"\33[1;91m\u2712 Update the system and install a list of commonly used tools and libraries.\33[0m")
