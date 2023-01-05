@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-from distutils.command.config import config
-import os, json
+import os
 
 main_menu_items = [
     "[a] Update & Install tools:- This option will update the system and install a list of commonly used tools and libraries.",
@@ -76,4 +75,4 @@ def Slack():
     os.system(f'sudo snap install slack')
 
 def Tag_Sync():
-    os.system(f'git clone https://github.com/AdeshSingh7/tag-sync.git')
+    os.system(f'git clone https://github.com/AdeshSingh7/tag-sync.git ~/tag-sync')
