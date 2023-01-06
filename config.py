@@ -14,31 +14,45 @@ main_menu_items = [
     "[q] Quit:- This option will exit the program.",
 ]
 
-config_data = {
+termux_config_data = {
+    "tools": "nano vim git wget figlet toilet curl zip php nmap ruby libminizip1 libgtkglext1 python python3 python3-pip python3-tk python3-dev",
+    "modules": "DateTime Flask Pillow pyfiglet requests tbomb termcolor urllib3 colorama",
+    }
+
+ubuntu_config_data = {
     "tools": "nano vim git wget figlet toilet curl zip apache2 net-tools php nmap ruby libminizip1 libgtkglext1 python python3 python3-pip python3-tk python3-dev",
-    "module": "ansible DateTime Flask Pillow PyAutoGUI pyfiglet requests tbomb termcolor urllib3 colorama",
+    "module": "DateTime Flask Pillow PyAutoGUI pyfiglet requests tbomb termcolor urllib3 colorama",
     "ngrok": "https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip",
     "ngrok_key": "< Auth token >",
     "anydesk": "https://download.anydesk.com/linux/anydesk_6.1.1-1_amd64.deb",
     "visualstudio": "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64",
     }
 
-tools = config_data['tools']
-module = config_data['module']
-ngrok = config_data['ngrok']
-ngrok_key = config_data['ngrok_key']
-anydesk = config_data['anydesk']
-visualstudio = config_data['visualstudio']
+ubuntu_tools = ubuntu_config_data['tools']
+ubuntu_modules = ubuntu_config_data['module']
+ngrok = ubuntu_config_data['ngrok']
+ngrok_key = ubuntu_config_data['ngrok_key']
+anydesk = ubuntu_config_data['anydesk']
+visualstudio = ubuntu_config_data['visualstudio']
+termux_tools = termux_config_data['tools']
+termux_modules = termux_config_data['modules']
+
+def config_termux(tools, modules):
+    os.system(f'apt -y update && apt -y upgrade')
+    os.system(f'apt install -y {tools}')
+    os.system(f'pip3 install {modules}')
+    os.system(f'gem install lolcat')
 
 def Clean():
     os.system(f'sudo apt -y autoremove && sudo apt -y autoclean')
 
-def Update(tools, module):
+def Update(tools, modules):
     os.system(f'sudo apt -y update')
     os.system(f'sudo apt -y install {tools}')
     os.system(f'sudo apt -y --fix-broken install')
     os.system(f'sudo gem install lolcat')
-    os.system(f'pip install {module}')
+    os.system(f'pip install {modules}')
+    os.system(f'pip3 install {modules}')
 
 def Ngrok(ngrok, ngrok_key):
     os.system(f'wget {ngrok}')
