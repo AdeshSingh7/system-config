@@ -39,8 +39,8 @@ if __name__ == '__main__':
         os_name = os.popen("uname -n -o").read().strip()
         uptime = os.popen("uptime -p").read().strip()
         Serial_Number = os.popen("sudo dmidecode -s system-serial-number").read().strip()
-        lan_mac = get_mac_address()[0]
-        wlan_mac = get_mac_address()[1]
+        lan_mac = get_mac_address()[0].upper()
+        wlan_mac = get_mac_address()[1].upper()
         ipv4 = get_ip_address()
         display_banner(size, vendor, os_name, Serial_Number, uptime, lan_mac, wlan_mac, ipv4)
     except KeyboardInterrupt:exit()
